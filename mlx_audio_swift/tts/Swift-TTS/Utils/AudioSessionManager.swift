@@ -22,27 +22,27 @@ public class AudioSessionManager {
 
     /// Set up the audio session with appropriate categories
     public func setupAudioSession() {
-        #if os(iOS)
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, options: [.duckOthers])
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {
-            print("Audio session setup failed: \(error)")
-        }
-        #endif
+//        #if os(iOS)
+//        do {
+//            try AVAudioSession.sharedInstance().setCategory(.playback, options: [.duckOthers])
+//            try AVAudioSession.sharedInstance().setActive(true)
+//        } catch {
+//            print("Audio session setup failed: \(error)")
+//        }
+//        #endif
         // No equivalent action needed for macOS
     }
 
     /// Reset the audio session
     public func resetAudioSession() {
         #if os(iOS)
-        do {
-            try AVAudioSession.sharedInstance().setActive(false)
-            try AVAudioSession.sharedInstance().setActive(true)
-            try AVAudioSession.sharedInstance().setCategory(.playback, options: [.duckOthers])
-        } catch {
-            print("Failed to reset audio session: \(error)")
-        }
+//        do {
+//            try AVAudioSession.sharedInstance().setActive(false)
+//            try AVAudioSession.sharedInstance().setActive(true)
+//            try AVAudioSession.sharedInstance().setCategory(.playback, options: [.duckOthers])
+//        } catch {
+//            print("Failed to reset audio session: \(error)")
+//        }
         #endif
         // No equivalent action needed for macOS
     }
@@ -61,13 +61,13 @@ public class AudioSessionManager {
 
     /// Deactivate the audio session
     public func deactivateAudioSession() {
-        #if os(iOS)
-        do {
-            try AVAudioSession.sharedInstance().setActive(false)
-        } catch {
-            print("Failed to deactivate audio session: \(error)")
-        }
-        #endif
+//        #if os(iOS)
+//        do {
+//            try AVAudioSession.sharedInstance().setActive(false)
+//        } catch {
+//            print("Failed to deactivate audio session: \(error)")
+//        }
+//        #endif
         // No equivalent action needed for macOS
     }
 }
