@@ -13,6 +13,8 @@ import UIKit
 
 /// A platform-agnostic audio session manager that handles platform differences between iOS and macOS
 public class AudioSessionManager {
+    
+    var isDisabled = true
 
     /// Singleton instance
     public static let shared = AudioSessionManager()
@@ -22,6 +24,7 @@ public class AudioSessionManager {
 
     /// Set up the audio session with appropriate categories
     public func setupAudioSession() {
+        guard !isDisabled else { return }
         #if os(iOS)
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, options: [.duckOthers])
@@ -35,6 +38,7 @@ public class AudioSessionManager {
 
     /// Reset the audio session
     public func resetAudioSession() {
+        guard !isDisabled else { return }
         #if os(iOS)
         do {
             try AVAudioSession.sharedInstance().setActive(false)
@@ -49,6 +53,7 @@ public class AudioSessionManager {
 
     /// Register for memory warnings
     public func registerForMemoryWarnings(target: Any, selector: Selector) {
+        guard !isDisabled else { return }
         #if os(iOS)
         NotificationCenter.default.addObserver(
             target,
@@ -61,6 +66,7 @@ public class AudioSessionManager {
 
     /// Deactivate the audio session
     public func deactivateAudioSession() {
+        guard !isDisabled else { return }
         #if os(iOS)
         do {
             try AVAudioSession.sharedInstance().setActive(false)
