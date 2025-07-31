@@ -10,12 +10,11 @@ import SwiftUI
 struct ContentView: View {
 
     @State private var kokoroTTSModel: KokoroTTSModel? = nil
-    @State private var orpheusTTSModel: OrpheusTTSModel? = nil
 
     @State private var sayThis : String = "Hello Everybody"
     @State private var status : String = ""
     
-    private var availableProviders = ["kokoro", "orpheus"]
+    private var availableProviders = ["kokoro"]
     @State private var chosenProvider : String = "kokoro"
     @State private var availableVoices: [String] = TTSVoice.allCases.map { $0.rawValue }
     @State private var chosenVoice: String = TTSVoice.bmGeorge.rawValue
@@ -35,17 +34,10 @@ struct ContentView: View {
                 }
             }
             .onChange(of: chosenProvider) { newProvider in
-                if newProvider == "orpheus" {
-                    availableVoices = OrpheusVoice.allCases.map { $0.rawValue }
-                    chosenVoice = availableVoices.first ?? "dan"
-
-                    status = "Orpheus is currently quite slow (0.1x on M1).  Working on it!\n\nBut it does support expressions: <laugh>, <chuckle>, <sigh>, <cough>, <sniffle>, <groan>, <yawn>, <gasp>"
-                } else {
-                    availableVoices = TTSVoice.allCases.map { $0.rawValue }
-                    chosenVoice = availableVoices.first ?? TTSVoice.bmGeorge.rawValue
-
-                    status = ""
-                }
+                availableVoices = TTSVoice.allCases.map { $0.rawValue }
+                chosenVoice = availableVoices.first ?? TTSVoice.bmGeorge.rawValue
+                
+                status = ""
             }
             .padding()
             .padding(.bottom, 0)
@@ -75,16 +67,6 @@ struct ContentView: View {
                             status = "Invalid Kokoro voice selected"
                         }
                         
-                    } else if chosenProvider == "orpheus" {
-                        if orpheusTTSModel == nil {
-                            orpheusTTSModel = OrpheusTTSModel()
-                        }
-
-                        if let orpheusVoice = OrpheusVoice(rawValue: chosenVoice) {
-                            await orpheusTTSModel!.say(sayThis, orpheusVoice)
-                        } else {
-                            status = "Invalid Orpheus voice selected"
-                        }
                     }
                     
                     status = "Done"

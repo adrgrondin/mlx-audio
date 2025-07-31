@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -32,23 +32,19 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		264836292DAD1252004DA2A4 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolder = Frameworks;
 			files = (
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7BBF58302DDF0A010047DCFF /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolder = Frameworks;
 			files = (
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -155,14 +151,11 @@
 /* Begin PBXFrameworksBuildPhase section */
 		264836162DAD10AA004DA2A4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		26942CF32DABD3B400B82507 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				18D7A7BB2DCDAB75005776E9 /* MLXNN in Frameworks */,
 				18D7A7B92DCDAB75005776E9 /* MLXLinalg in Frameworks */,
@@ -170,18 +163,15 @@
 				18D7A7B72DCDAB75005776E9 /* MLXFast in Frameworks */,
 				18D7A7B52DCDAB75005776E9 /* MLXFFT in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7BBF57E02DDD06460047DCFF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				7BBF581B2DDD074E0047DCFF /* MLXNN in Frameworks */,
 				7BBF58192DDD07310047DCFF /* MLX in Frameworks */,
 				7BBF581F2DDD07680047DCFF /* MLXFast in Frameworks */,
 				7BBF581D2DDD07610047DCFF /* MLXFFT in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -236,8 +226,6 @@
 				2648361A2DAD10AA004DA2A4 /* Tests */,
 			);
 			name = "Swift-TTS-Tests";
-			packageProductDependencies = (
-			);
 			productName = "Swift-TTS-Tests";
 			productReference = 264836192DAD10AA004DA2A4 /* Swift-TTS-Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -251,8 +239,6 @@
 				26942CF42DABD3B400B82507 /* Resources */,
 			);
 			buildRules = (
-			);
-			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
 				26942CF82DABD3B400B82507 /* Swift-TTS */,
@@ -279,8 +265,6 @@
 				7BBF58302DDF0A010047DCFF /* Embed Frameworks */,
 			);
 			buildRules = (
-			);
-			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
 				7BBF57E42DDD06460047DCFF /* Swift-TTS-iOS */,
@@ -330,7 +314,7 @@
 			packageReferences = (
 				18D7A7B12DCDAB75005776E9 /* XCRemoteSwiftPackageReference "mlx-swift" */,
 			);
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 90;
 			productRefGroup = 26942CF72DABD3B400B82507 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -345,49 +329,37 @@
 /* Begin PBXResourcesBuildPhase section */
 		264836172DAD10AA004DA2A4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		26942CF42DABD3B400B82507 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				261E20862DAC272A000711D0 /* readme.md in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7BBF57E12DDD06460047DCFF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		264836152DAD10AA004DA2A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		26942CF22DABD3B400B82507 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7BBF57DF2DDD06460047DCFF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -400,7 +372,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		2648361F2DAD10AA004DA2A4 /* Debug */ = {
+		2648361F2DAD10AA004DA2A4 /* Debug configuration for PBXNativeTarget "Swift-TTS-Tests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
@@ -419,7 +391,7 @@
 			};
 			name = Debug;
 		};
-		264836202DAD10AA004DA2A4 /* Release */ = {
+		264836202DAD10AA004DA2A4 /* Release configuration for PBXNativeTarget "Swift-TTS-Tests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
@@ -438,7 +410,7 @@
 			};
 			name = Release;
 		};
-		26942D032DABD3B600B82507 /* Debug */ = {
+		26942D032DABD3B600B82507 /* Debug configuration for PBXProject "Swift-TTS" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -501,7 +473,7 @@
 			};
 			name = Debug;
 		};
-		26942D042DABD3B600B82507 /* Release */ = {
+		26942D042DABD3B600B82507 /* Release configuration for PBXProject "Swift-TTS" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -556,7 +528,7 @@
 			};
 			name = Release;
 		};
-		26942D062DABD3B600B82507 /* Debug */ = {
+		26942D062DABD3B600B82507 /* Debug configuration for PBXNativeTarget "Swift-TTS" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -583,7 +555,7 @@
 			};
 			name = Debug;
 		};
-		26942D072DABD3B600B82507 /* Release */ = {
+		26942D072DABD3B600B82507 /* Release configuration for PBXNativeTarget "Swift-TTS" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -611,7 +583,7 @@
 			};
 			name = Release;
 		};
-		7BBF57EB2DDD06470047DCFF /* Debug */ = {
+		7BBF57EB2DDD06470047DCFF /* Debug configuration for PBXNativeTarget "Swift-TTS-iOS" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -641,7 +613,7 @@
 			};
 			name = Debug;
 		};
-		7BBF57EC2DDD06470047DCFF /* Release */ = {
+		7BBF57EC2DDD06470047DCFF /* Release configuration for PBXNativeTarget "Swift-TTS-iOS" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -678,37 +650,33 @@
 		264836212DAD10AA004DA2A4 /* Build configuration list for PBXNativeTarget "Swift-TTS-Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2648361F2DAD10AA004DA2A4 /* Debug */,
-				264836202DAD10AA004DA2A4 /* Release */,
+				2648361F2DAD10AA004DA2A4 /* Debug configuration for PBXNativeTarget "Swift-TTS-Tests" */,
+				264836202DAD10AA004DA2A4 /* Release configuration for PBXNativeTarget "Swift-TTS-Tests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		26942CF12DABD3B400B82507 /* Build configuration list for PBXProject "Swift-TTS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				26942D032DABD3B600B82507 /* Debug */,
-				26942D042DABD3B600B82507 /* Release */,
+				26942D032DABD3B600B82507 /* Debug configuration for PBXProject "Swift-TTS" */,
+				26942D042DABD3B600B82507 /* Release configuration for PBXProject "Swift-TTS" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		26942D052DABD3B600B82507 /* Build configuration list for PBXNativeTarget "Swift-TTS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				26942D062DABD3B600B82507 /* Debug */,
-				26942D072DABD3B600B82507 /* Release */,
+				26942D062DABD3B600B82507 /* Debug configuration for PBXNativeTarget "Swift-TTS" */,
+				26942D072DABD3B600B82507 /* Release configuration for PBXNativeTarget "Swift-TTS" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		7BBF57ED2DDD06470047DCFF /* Build configuration list for PBXNativeTarget "Swift-TTS-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7BBF57EB2DDD06470047DCFF /* Debug */,
-				7BBF57EC2DDD06470047DCFF /* Release */,
+				7BBF57EB2DDD06470047DCFF /* Debug configuration for PBXNativeTarget "Swift-TTS-iOS" */,
+				7BBF57EC2DDD06470047DCFF /* Release configuration for PBXNativeTarget "Swift-TTS-iOS" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
