@@ -10,7 +10,7 @@ let package = Package(
             targets: ["Swift-TTS"]),
     ],
     dependencies: [
-         .package(url: "https://github.com/ml-explore/mlx-swift", from: "0.25.2")
+         .package(url: "https://github.com/ml-explore/mlx-swift", from: "0.25.6")
     ],
     targets: [
         .target(
