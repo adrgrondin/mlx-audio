@@ -77,7 +77,7 @@ public class KokoroTTS {
   private var prosodyPredictor: ProsodyPredictor!
   private var textEncoder: TextEncoder!
   private var decoder: Decoder!
-  private var eSpeakEngine: ESpeakNGEngine!
+  private var phonemizerEngine: PhonemizerEngine!
   private var kokoroTokenizer: KokoroTokenizer!
   private var chosenVoice: TTSVoice?
   private var voice: MLXArray!
@@ -115,9 +115,9 @@ public class KokoroTTS {
 
     // Optionally preserve text processing components for faster restart
     if !preserveTextProcessing {
-      if let _ = eSpeakEngine {
-        // Ensure eSpeakEngine is terminated properly
-        eSpeakEngine = nil
+      if let _ = phonemizerEngine {
+        // Ensure phonemizerEngine is terminated properly
+        phonemizerEngine = nil
       }
       kokoroTokenizer = nil
     }
@@ -133,12 +133,12 @@ public class KokoroTTS {
     }
 
     // Initialize text processing components first (less expensive)
-    if eSpeakEngine == nil {
-      eSpeakEngine = try ESpeakNGEngine()
+    if phonemizerEngine == nil {
+      phonemizerEngine = try PhonemizerEngine()
     }
 
     if kokoroTokenizer == nil {
-      kokoroTokenizer = KokoroTokenizer(engine: eSpeakEngine)
+      kokoroTokenizer = KokoroTokenizer(engine: phonemizerEngine)
     }
 
     autoreleasepool {

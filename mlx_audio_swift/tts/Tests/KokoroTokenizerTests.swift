@@ -11,13 +11,13 @@ import Foundation
 final class KokoroTokenizerTests: XCTestCase {
     
     private var tokenizer: KokoroTokenizer!
-    private var mockEngine: ESpeakNGEngine!
+    private var mockEngine: PhonemizerEngine!
     
     override func setUp() {
         super.setUp()
-        // Create a real ESpeakNGEngine for testing
+        // Create a real PhonemizerEngine for testing
         do {
-            mockEngine = try ESpeakNGEngine()
+            mockEngine = try PhonemizerEngine()
             tokenizer = KokoroTokenizer(engine: mockEngine)
             try tokenizer.setLanguage(for: .afAlloy) // Set to English US for consistent testing
         } catch {

@@ -86,8 +86,8 @@ final class KokoroTokenizer {
     // MARK: - Instance Properties
 
     private var cachedLexicon: [String: String]?
-    private var eSpeakEngine: ESpeakNGEngine
-    private var currentLanguage: ESpeakNGEngine.LanguageDialect = .none
+    private var phonemizerEngine: PhonemizerEngine
+    private var currentLanguage: PhonemizerEngine.LanguageDialect = .none
     private var isLexiconEnabled = false
 
     // MARK: - Token Structure
@@ -124,17 +124,17 @@ final class KokoroTokenizer {
 
     // MARK: - Initialization
 
-    init(engine: ESpeakNGEngine) {
-        self.eSpeakEngine = engine
+    init(engine: PhonemizerEngine) {
+        self.phonemizerEngine = engine
         loadLexicon()
     }
 
     // MARK: - Public API
 
     func setLanguage(for voice: TTSVoice) throws {
-        let language = try eSpeakEngine.languageForVoice(voice: voice)
+        let language = try phonemizerEngine.languageForVoice(voice: voice)
         if currentLanguage != language {
-            try eSpeakEngine.setLanguage(for: voice)
+            try phonemizerEngine.setLanguage(for: voice)
             currentLanguage = language
 
             // Update lexicon usage based on language
@@ -501,8 +501,8 @@ final class KokoroTokenizer {
             }
         }
 
-        // Use espeak backend
-        return try eSpeakEngine.phonemize(text: lowerToken)
+        // Use phonemizer backend
+        return try phonemizerEngine.phonemize(text: lowerToken)
     }
 
     private func mergeTokens(_ tokens: [Token]) -> Token {

@@ -19,7 +19,7 @@ Steps to run:
  
 Implemented and working. Based on [Kokoro TTS for iOS](https://github.com/mlalma/kokoro-ios).  All credit to mlalma for that work!
 
-Uses MLX Swift and eSpeak NG.  M1 chip or better is requied.
+Uses MLX Swift.  M1 chip or better is requied.
 
 
 # Orpheus

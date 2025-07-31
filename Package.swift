@@ -7,7 +7,7 @@ let package = Package(
     products: [
         .library(
             name: "mlx-swift-audio",
-            targets: ["Swift-TTS","ESpeakNG"]),
+            targets: ["Swift-TTS"]),
     ],
     dependencies: [
          .package(url: "https://github.com/ml-explore/mlx-swift", from: "0.25.2")

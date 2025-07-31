@@ -7,7 +7,7 @@ import Foundation
 final class Tokenizer {
   private init() {}
 
-  // Use ESpeakNGEngine to phonemize the text first before calling this method
+  // Use PhonemizerEngine to phonemize the text first before calling this method
   // Returns tokenized array that can then be passed to TTS system
   static func tokenize(phonemizedText text: String) -> [Int] {
     return text

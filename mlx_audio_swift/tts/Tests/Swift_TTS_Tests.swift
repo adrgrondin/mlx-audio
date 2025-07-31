@@ -8,7 +8,6 @@
 import Testing
 
 @testable import Swift_TTS
-@testable import ESpeakNG
 
 struct Swift_TTS_Tests {
 
