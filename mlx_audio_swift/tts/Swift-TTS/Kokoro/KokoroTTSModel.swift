@@ -58,6 +58,8 @@ public class KokoroTTSModel: ObservableObject {
     }
 
     @Published public var audioGenerationTime: TimeInterval = 0
+    
+    @Published public var volumeLevel: Float = 0.0
 
     public init() {
         kokoroTTSEngine = KokoroTTS()
@@ -66,6 +68,7 @@ public class KokoroTTSModel: ObservableObject {
 
     deinit {
          NotificationCenter.default.removeObserver(self)
+         removeTapForWaveform()
          cleanupAudioSystem()
      }
 
@@ -118,6 +121,10 @@ public class KokoroTTSModel: ObservableObject {
 
     private func resetAudioSystem() {
         print("Resetting audio system")
+
+        // Remove audio tap and reset volume level
+        removeTapForWaveform()
+        volumeLevel = 0.0
 
         // Stop player node first to avoid QoS inversion
         if playerNode.isPlaying {
@@ -186,6 +193,10 @@ public class KokoroTTSModel: ObservableObject {
     public func stopPlayback() {
         stopPlaybackMonitoring()
         resetBufferCounters()
+
+        // Remove audio tap and reset volume level
+        removeTapForWaveform()
+        volumeLevel = 0.0
 
         // Reset audio system with proper error handling
         do {
@@ -372,6 +383,10 @@ public class KokoroTTSModel: ObservableObject {
             // Stop any active monitoring
             stopPlaybackMonitoring()
 
+            // Remove audio tap and reset volume level
+            removeTapForWaveform()
+            volumeLevel = 0.0
+
             // Reset internal state
             isGenerating = false
             isPlayingAudio = false
@@ -438,6 +453,10 @@ public class KokoroTTSModel: ObservableObject {
 
                     if allBuffersCompleted {
 
+                        // Remove audio tap and reset volume level
+                        self.removeTapForWaveform()
+                        self.volumeLevel = 0.0
+
                         // Directly update playback state
                         self.isPlayingAudio = false
                         self.isAudioPlaying = false
@@ -465,6 +484,7 @@ public class KokoroTTSModel: ObservableObject {
 
         // Start playback if needed
         if !playerNode.isPlaying {
+            installTapForWaveform()
             playerNode.play()
 
             // Simple retry if player didn't start
@@ -476,6 +496,46 @@ public class KokoroTTSModel: ObservableObject {
                 }
             }
         }
+    }
+
+    // MARK: - Audio Level Monitoring
+
+    private var audioLevelTimer: Timer?
+    private var audioLevelUpdateTimer: Timer?
+
+    private func installTapForWaveform() {
+        // Remove any existing tap first
+        playerNode.removeTap(onBus: 0)
+        
+        // Install tap on the player node to monitor audio levels
+        playerNode.installTap(onBus: 0, bufferSize: 1024, format: audioFormat) { [weak self] buffer, _ in
+            guard let self = self else { return }
+            
+            // Calculate RMS (Root Mean Square) for audio level
+            let channelData = buffer.floatChannelData![0]
+            let frameLength = Int(buffer.frameLength)
+            
+            var sum: Float = 0.0
+            for i in 0..<frameLength {
+                let sample = channelData[i]
+                sum += sample * sample
+            }
+            
+            let rms = sqrt(sum / Float(frameLength))
+            
+            // Convert RMS to dB and then to a 0-1 scale
+            let db = 20 * log10(max(rms, 1e-10))
+            let normalizedLevel = max(0.0, min(1.0, (db + 60) / 60)) // Normalize -60dB to 0dB range
+            
+            // Update volume level on main thread
+            DispatchQueue.main.async {
+                self.volumeLevel = normalizedLevel
+            }
+        }
+    }
+
+    private func removeTapForWaveform() {
+        playerNode.removeTap(onBus: 0)
     }
 
     // MARK: - Helper Methods
@@ -514,6 +574,10 @@ public class KokoroTTSModel: ObservableObject {
 
                 self.stopPlaybackMonitoring()
 
+                // Remove audio tap and reset volume level
+                self.removeTapForWaveform()
+                self.volumeLevel = 0.0
+
                 // Ensure playback state is reset
                 if self.isAudioPlaying {
                     self.isPlayingAudio = false
@@ -546,6 +610,10 @@ public class KokoroTTSModel: ObservableObject {
         if (!isActuallyPlaying && allBuffersCompleted) || (!isActuallyPlaying && !hasScheduledBuffers) {
             // Stop the monitoring timer immediately
             stopPlaybackMonitoring()
+
+            // Remove audio tap and reset volume level
+            removeTapForWaveform()
+            volumeLevel = 0.0
 
             // No more buffers are playing, mark playback as complete
             self.isPlayingAudio = false
