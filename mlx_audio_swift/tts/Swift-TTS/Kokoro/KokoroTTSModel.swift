@@ -70,8 +70,10 @@ public class KokoroTTSModel: ObservableObject {
         }
     }
 
-    public init(url: URL? = nil) {
-        kokoroTTSEngine = KokoroTTS(customURL: url)
+    public init(autoload: Bool = true) {
+        if autoload {
+            kokoroTTSEngine = KokoroTTS()
+        }
         setupAudioSystem()
     }
 
@@ -162,6 +164,10 @@ public class KokoroTTSModel: ObservableObject {
         } catch {
             print("Failed to restart audio engine: \(error)")
         }
+    }
+    
+    public func load(url: URL? = nil) {
+        kokoroTTSEngine = KokoroTTS(customURL: url)
     }
 
     public func say(_ text: String, _ voice: TTSVoice, speed: Float = 1.0) {
