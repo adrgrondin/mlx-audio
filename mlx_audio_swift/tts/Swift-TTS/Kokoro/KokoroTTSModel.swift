@@ -70,8 +70,8 @@ public class KokoroTTSModel: ObservableObject {
         }
     }
 
-    public init() {
-        kokoroTTSEngine = KokoroTTS()
+    public init(url: URL? = nil) {
+        kokoroTTSEngine = KokoroTTS(customURL: url)
         setupAudioSystem()
     }
 
